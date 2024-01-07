@@ -183,27 +183,8 @@
                         ><span>15s</span>
                     </button>
                     <button class="player-icon speed">1x</button>
-                    <audio id="audioPlayer" controls></audio>
-<!--                    <audio src="{{.song}}"></audio>-->
-                    <script>
-                        var audio = document.getElementById('audioPlayer');
+                    <audio id="audioPlayer"></audio>
 
-                        if (Hls.isSupported()) {
-                            var hls = new Hls();
-                            hls.loadSource('https://cf-hls-media.sndcdn.com/playlist/pQZmZEFGX8J5.128.mp3/playlist.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLWhscy1tZWRpYS5zbmRjZG4uY29tL3BsYXlsaXN0L3BRWm1aRUZHWDhKNS4xMjgubXAzL3BsYXlsaXN0Lm0zdTgqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzA0NjAwMDMwfX19XX0_&Signature=JJRh6imrJwEuyNze4PVX4b-4~-xaOkYSWQcwsZHjzIyc2KgrkcrjgdoHbVmRIovLaCVRi2D371B7DAJOuQLitHvYzAV8ugzm7wQun2jDMWvpnPSzJMBsD1PQ4i0WhO1sIvwIDmo8GYcJ9dl66iDHENuJBImaV8L2PbxTL-3p0oF-9vQTDdmaP3Bj-UuFjIjOElQhSFMBODakQ2ocsNSzN-fIYsH5M5MnkSUokCrBYAZbQNEFnbptZpP401Y0gzn~-O~IaHSN~-0c83G3ZAE6LoBBE0T6ghCexvgrcKK3MMKJ6Tj0smzC53SyIebpa00OQu2eIyGaZm6Q0E7uIppmIg__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ&track_authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJVUyIsInN1YiI6IiIsInJpZCI6IjgxODUxZjZmLTAxNTAtNDUyYy05ZWFiLWM5MzJjOWUzNGE5ZiIsImlhdCI6MTcwNDU5OTY2M30.4Vi6xy3shCwAR3BpdJQnslj0Z_YQhP2eIIGr6d7IdtU');
-                            hls.attachMedia(audio);
-                            hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                                audio.muted = true; // Mute the audio to avoid autoplay issues
-                                audio.play();
-                            });
-                        }
-                        else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
-                            audio.src = 'https://cf-hls-media.sndcdn.com/playlist/pQZmZEFGX8J5.128.mp3/playlist.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLWhscy1tZWRpYS5zbmRjZG4uY29tL3BsYXlsaXN0L3BRWm1aRUZHWDhKNS4xMjgubXAzL3BsYXlsaXN0Lm0zdTgqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzA0NjAwMDMwfX19XX0_&Signature=JJRh6imrJwEuyNze4PVX4b-4~-xaOkYSWQcwsZHjzIyc2KgrkcrjgdoHbVmRIovLaCVRi2D371B7DAJOuQLitHvYzAV8ugzm7wQun2jDMWvpnPSzJMBsD1PQ4i0WhO1sIvwIDmo8GYcJ9dl66iDHENuJBImaV8L2PbxTL-3p0oF-9vQTDdmaP3Bj-UuFjIjOElQhSFMBODakQ2ocsNSzN-fIYsH5M5MnkSUokCrBYAZbQNEFnbptZpP401Y0gzn~-O~IaHSN~-0c83G3ZAE6LoBBE0T6ghCexvgrcKK3MMKJ6Tj0smzC53SyIebpa00OQu2eIyGaZm6Q0E7uIppmIg__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ&track_authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJnZW8iOiJVUyIsInN1YiI6IiIsInJpZCI6IjgxODUxZjZmLTAxNTAtNDUyYy05ZWFiLWM5MzJjOWUzNGE5ZiIsImlhdCI6MTcwNDU5OTY2M30.4Vi6xy3shCwAR3BpdJQnslj0Z_YQhP2eIIGr6d7IdtU';
-                            audio.addEventListener('loadedmetadata', function() {
-                                audio.play();
-                            });
-                        }
-                    </script>
                 </div>
                 <div class="buttons">
                     <button
@@ -225,10 +206,7 @@
                 </div>
             </div>
         </div>
-        <div class="cover-bg">
-            <img
-                src=""
-            />
+        <div class="cover-bg"><img src=""/>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/scripts.min.js"></script>

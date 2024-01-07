@@ -166,7 +166,7 @@ $(document).ready(function() {
         var currentTime = player.querySelector('.currenttime');
         var duration = player.querySelector('.duration');
         var currentSpeedIdx = 0;
-        pause.style.display = 'none';
+        // pause.style.display = 'none';
         var toHHMMSS = function(totalsecs) {
             var sec_num = parseInt(totalsecs, 10);
             var hours = Math.floor(sec_num / 3600);

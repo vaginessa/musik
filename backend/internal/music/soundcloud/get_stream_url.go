@@ -2,11 +2,19 @@ package soundcloud
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/antchfx/htmlquery"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"strings"
 )
+
+// AudioLink struct for unmarshalling data
+type AudioLink struct {
+	URL string `json:"url"`
+}
 
 // GetStreamURL function
 func (s *SoundCloud) GetStreamURL(ctx context.Context, url string) (string, error) {
@@ -49,12 +57,34 @@ func (s *SoundCloud) GetStreamURL(ctx context.Context, url string) (string, erro
 
 	streamURL := fmt.Sprintf(baseURL, trackID, streamToken, clientID, trackAuth)
 
+	// Get the response from the URL
+	streamResp, err := http.Get(streamURL)
+	if err != nil {
+		log.Println(err)
+		return "", err
+	}
+	defer streamResp.Body.Close()
+
+	// Read the body of the response
+	body, err := ioutil.ReadAll(streamResp.Body)
+	if err != nil {
+		log.Println("Error reading response body:", err)
+		return "", err
+	}
+
+	// Unmarshal the JSON into the struct
+	var audioResp AudioLink
+	err = json.Unmarshal(body, &audioResp)
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON:", err)
+		return "", err
+	}
 	log.Println("Track ID: ", trackID)
 	log.Println("Stream Token: ", streamToken)
 
 	log.Println("Stream URL: ", streamURL)
 
-	return streamURL, nil
+	return audioResp.URL, nil
 }
 
 func getTrackInfo(url string) (string, string, error) {
