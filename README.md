@@ -1,4 +1,4 @@
-<p align="center">
+do<p align="center">
 Musik is a SoundCloud music discovery web application built in Golang. Simply go to the web-server and start discovering new music!
 </p>
 <br>

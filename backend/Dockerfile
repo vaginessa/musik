@@ -1,9 +1,11 @@
-# Golang version - Docker Hub (hub.docker.com)
 FROM golang:alpine3.19
 
 # Enviornment variables
-ENV APP_NAME musik_api
+ENV APP_NAME backend
 ENV PORT 8080
+
+
+RUN apk update
 
 # Open system port
 EXPOSE ${PORT}
@@ -17,8 +19,7 @@ COPY . /go/src/${APP_NAME}
 RUN go mod download
 
 # Build application
-RUN go build -o ${APP_NAME}
+RUN go build -o ${APP_NAME} ./cmd/backend
 
 # Run application
 CMD ./${APP_NAME}
-
