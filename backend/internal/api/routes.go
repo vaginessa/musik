@@ -13,5 +13,6 @@ func (s *Server) Routes() {
 	api.GET("/music/title", s.GetTitle)
 	api.GET("/music/artwork", s.GetArtworkURL)
 	api.GET("/music/stream", s.GetStreamURL)
+	api.GET("/music/random", s.GetRandomSong)
 
 }

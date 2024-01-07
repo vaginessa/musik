@@ -1,34 +1,18 @@
 $(document).ready(function() {
-    // Fetch and update the artwork URL
-    fetchArtwork();
-    fetchAudioStream();
 
-    // Define function to fetch artwork
-    function fetchArtwork() {
+    function fetchSongDetails() {
         $.ajax({
-            url: '/api/artwork',
+            url: '/api/random-song', // Updated endpoint
             type: 'GET',
             success: function(data) {
-                console.log("success");
                 console.log("Received data:", data); // Log the entire data object
-                $('#coverImg').attr('src', data.artworkUrl); // Update the src attribute of the image
-                $('.cover-bg img').attr('src', data.artworkUrl); // Update the src attribute of the image
 
-            },
-            error: function(error) {
-                console.error('Error fetching artwork:', error);
-            }
-        });
-    }
+                // Update the artwork
+                $('#coverImg').attr('src', data.artworkUrl);
+                $('.cover-bg img').attr('src', data.artworkUrl);
 
-    // Define function to fetch audio stream
-    function fetchAudioStream() {
-        $.ajax({
-            url: '/api/stream', // Endpoint in your Node.js server
-            type: 'GET',
-            success: function(data) {
+                // Update the audio stream
                 var audioUrl = data.streamUrl;
-                console.log("Stream URL: ", data.streamUrl)// Adjust according to the response structure
                 var audio = document.getElementById('audioPlayer');
 
                 if (Hls.isSupported()) {
@@ -36,7 +20,7 @@ $(document).ready(function() {
                     hls.loadSource(audioUrl);
                     hls.attachMedia(audio);
                     hls.on(Hls.Events.MEDIA_ATTACHED, function () {
-                        audio.muted = false; // Mute the audio to avoid autoplay issues
+                        audio.muted = false;
                         audio.play();
                     });
                 } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
@@ -47,10 +31,13 @@ $(document).ready(function() {
                 }
             },
             error: function(error) {
-                console.error('Error fetching audio stream:', error);
+                console.error('Error fetching song details:', error);
             }
         });
     }
+
+// Call the function to fetch song details
+    fetchSongDetails();
 
     // ... other scripts ...
 });
