@@ -1,4 +1,4 @@
-do<p align="center">
+<p align="center">
 Musik is a SoundCloud music discovery web application built in Golang. Simply go to the web-server and start discovering new music!
 </p>
 <br>
@@ -18,7 +18,9 @@ Musik is a SoundCloud music discovery web application built in Golang. Simply go
 
 ### 📚 Table of Contents
 -   [Local Development](#localdevelopment)
--   [License](#license)
+    -   [Starting server with Docker-compose](#starting-server-with-docker-compose)
+    -   [Starting backend with go](#starting-server-with-go)
+    -    [Starting frontend with npm](#starting-frontend-with-npm)
 -   [Contributors](#contributors)
 
 ## 🚀 Local Development
@@ -34,16 +36,23 @@ docker-compose up --build
 ### Starting server with go
 
 ```bash
+# cd into backend directory
+cd backend
 # go run
 go run server.go
-
 ```
 
-## 📝 License
+### Starting frontend with npm
 
-By contributing, you agree that your contributions will be licensed under its MIT License.
+```bash
+# cd into the frontend directory
+cd frontend
+# install dependencies
+npm install
+# start the server
+npm start
+```
 
-In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
 ## Contributors
 
@@ -53,3 +62,4 @@ Contributions are welcome! Please see [Contributing Guide](https://github.com/im
   <tr>
     <td align="center"><a href="https://github.com/imthaghost"><img src="https://avatars3.githubusercontent.com/u/46610773?s=460&v=4" width="75px;" alt="Gary Frederick"/><br /><sub><b>Tha Ghost</b></sub></a><br /><a href="https://github.com/imthaghost/musik/commits?author=imthaghost" title="Code">💻</a></td>
   </tr>
+</table>
