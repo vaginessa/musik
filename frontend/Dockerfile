@@ -1,14 +1,14 @@
-# Use an official Node runtime as a parent image
-FROM node:latest
+# Use a specific stable Node runtime as a parent image
+FROM node:16
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-RUN npm install
+# Install app dependencies
+RUN npm ci
 
 # Bundle app source
 COPY . .
@@ -16,4 +16,4 @@ COPY . .
 # Your app binds to port 3000 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
 EXPOSE 3000
 
-CMD [ "node", "server.js" ]
+CMD ["node", "server.js"]

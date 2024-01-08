@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/k0kubun/pp/v3"
 	"io"
 	"math/rand"
 	"net/url"
@@ -46,16 +45,9 @@ func (s *SoundCloud) GetRandomSongURL(ctx context.Context) (string, error) {
 
 	randomPlaylist := rand.Intn(len(playlistResponse.Collection)-1-0+1) + 0
 
-	pp.Println("Random Number: ", randomPlaylist)
-	pp.Println(playlistResponse.Collection[randomPlaylist].Title)
-	pp.Println(playlistResponse.Collection[randomPlaylist].PermalinkURL)
-	pp.Println(playlistResponse.Collection[randomPlaylist].ID)
-
 	playlistID := playlistResponse.Collection[randomPlaylist].ID
 
 	albumURL := fmt.Sprintf("https://api-v2.soundcloud.com/playlists/%d?representation=full&client_id=%s&app_version=1704451463&app_locale=en", playlistID, clientID)
-
-	pp.Println("Album URL: ", albumURL)
 
 	resp, err = s.Client.Get(albumURL)
 
@@ -70,12 +62,6 @@ func (s *SoundCloud) GetRandomSongURL(ctx context.Context) (string, error) {
 		return "", err
 	}
 
-	pp.Println("Artwork URL: ", albumResponse.ArtworkURL)
-	pp.Println("Title: ", albumResponse.Title)
-	pp.Println("TrackCount: ", albumResponse.TrackCount)
-	pp.Println("Track: ", albumResponse.Tracks[0].Title)
-	pp.Println("Track ID: ", albumResponse.Tracks[0].ID)
-
 	baseTrackURL := "https://api-v2.soundcloud.com/tracks"
 	appVersion := "1704451463"
 	appLocale := "en"
@@ -88,6 +74,7 @@ func (s *SoundCloud) GetRandomSongURL(ctx context.Context) (string, error) {
 			sb.WriteString(",")
 		}
 	}
+
 	trackIDsString := sb.String()
 
 	// Encode the parameters
@@ -112,15 +99,10 @@ func (s *SoundCloud) GetRandomSongURL(ctx context.Context) (string, error) {
 		return "", err
 	}
 
-	pp.Println("Track Artwork: ", trackResponse[0].ArtworkURL)
-	pp.Println("Track Title: ", trackResponse[0].Title)
-	pp.Println("Track PermalinkURL: ", trackResponse[0].PermalinkURL)
-	//pp.Println("Track Permalink: ", trackResponse[0].Permalink)
-	//pp.Println("Is Public: ", trackResponse[0].Public)
-	//pp.Println("Is Streamable: ", trackResponse[0].Streamable)
-	//pp.Println("Track Stream URL: ", trackResponse[0].Media.Transcodings[0].URL)
-	//pp.Println("Track Authorization: ", trackResponse[0].TrackAuthorization)
-	//pp.Println("Stream Token: ", trackResponse[0].SecretToken)
+	s.Logger.Msg(fmt.Sprintf("Track Title: %s", trackResponse[0].Title))
+	s.Logger.Msg(fmt.Sprintf("Track Artwork: %s", trackResponse[0].ArtworkURL))
+	s.Logger.Msg(fmt.Sprintf("Track PermalinkURL: %s ", trackResponse[0].PermalinkURL))
+	//s.Logger.Msg(fmt.Sprintf("Is Streamable: %i", trackResponse[0].Streamable))
 
 	randomTrackURL := trackResponse[rand.Intn(len(trackResponse)-1-0+1)+0].PermalinkURL
 

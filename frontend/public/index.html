@@ -187,13 +187,11 @@
 
                 </div>
                 <div class="buttons">
-                    <button
-                        onclick="clearit()"
-                        class="button next cover-fill"
-                    >
+                    <button id="newSong" class="button next cover-fill">
                         New Song <i class="icon" data-feather="shuffle"></i>
                     </button>
-                    <a
+
+                    <a id="songSource"
                         class="button source cover-outline cover-color"
                         href=""
                         target="_blank"
@@ -208,10 +206,24 @@
         </div>
         <div class="cover-bg"><img src=""/>
         </div>
+        <script src="js/new_song.js"></script>
+        <script type="module">
+            import {feather} from "./js/scripts.min";
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const newSongButton = document.getElementById('newSong');
+                if (newSongButton) {
+                    newSongButton.addEventListener('click', fetchNewSong);
+                }
+            });
+
+            // Make sure to call Feather's replace function to render icons
+            feather.replace();
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="js/scripts.min.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/inline.js"></script>
-        
+
     </body>
 </html>

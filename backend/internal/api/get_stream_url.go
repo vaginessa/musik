@@ -2,8 +2,9 @@ package api
 
 import (
 	"context"
-	"github.com/labstack/echo/v4"
 	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 // GetStreamURL - 200 OK

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/imthaghost/musik/backend/internal/music/soundcloud"
 	"math/rand"
 	"net/http"
 	"os"
@@ -16,6 +15,7 @@ import (
 	"github.com/imthaghost/musik/backend/internal/api"
 	"github.com/imthaghost/musik/backend/internal/errors/sentry"
 	"github.com/imthaghost/musik/backend/internal/logger/zap"
+	"github.com/imthaghost/musik/backend/internal/music/soundcloud"
 )
 
 var startup time.Time
@@ -35,7 +35,7 @@ func main() {
 	errorMonitorService := sentry.NewService(&cfg)
 
 	// init music service
-	musicService := soundcloud.NewService()
+	musicService := soundcloud.NewService(logService)
 
 	// init server and inject dependencies
 	server := api.NewServer(

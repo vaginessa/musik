@@ -8,6 +8,6 @@ import (
 
 // HealthCheck - 200 OK
 func (s *Server) HealthCheck(c echo.Context) error {
-
+	s.LoggerService.Msg("Health check")
 	return c.NoContent(http.StatusOK)
 }

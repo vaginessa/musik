@@ -2,13 +2,13 @@ package api
 
 import (
 	"context"
-	"github.com/imthaghost/musik/backend/internal/music"
 
 	"github.com/labstack/echo/v4"
 
 	"github.com/imthaghost/musik/backend/config"
 	"github.com/imthaghost/musik/backend/internal/errors"
 	"github.com/imthaghost/musik/backend/internal/logger"
+	"github.com/imthaghost/musik/backend/internal/music"
 )
 
 // Server represents an API wrapper around the SoundCloud API
