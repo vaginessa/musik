@@ -106,7 +106,7 @@ function updatePlayerAndArtwork(songData) {
     document.querySelector('.cover-bg img').src = songData.artworkUrl;
     document.getElementById('songSource').href = songData.songUrl;
 
-    
+
     // Update the audio stream
     var audioPlayer = document.getElementById('audioPlayer');
 
