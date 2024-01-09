@@ -106,14 +106,11 @@ function updatePlayerAndArtwork(songData) {
     document.querySelector('.cover-bg img').src = songData.artworkUrl;
     document.getElementById('songSource').href = songData.songUrl;
 
-    console.log("Received new song URL:", songData.songUrl);
-    console.log("Received new artwork URL:", songData.artworkUrl);
-    console.log("Received new stream URL:", songData.streamUrl);
-
+    
     // Update the audio stream
     var audioPlayer = document.getElementById('audioPlayer');
 
-   
+
     if (Hls.isSupported()) {
         var hls = new Hls();
         hls.loadSource(songData.streamUrl);
