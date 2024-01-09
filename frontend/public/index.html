@@ -172,10 +172,10 @@
                         <span>15s</span
                         ><i class="icon" data-feather="skip-back"></i>
                     </button>
-                    <button class="player-icon pause cover-fill">
+                    <button id="pauseButton" class="player-icon pause cover-fill">
                         <i class="icon" data-feather="pause"></i>
                     </button>
-                    <button class="player-icon play cover-fill">
+                    <button id="playButton" class="player-icon play cover-fill">
                         <i class="icon" data-feather="play"></i>
                     </button>
                     <button class="player-icon skip forward">
@@ -206,23 +206,11 @@
         </div>
         <div class="cover-bg"><img src=""/>
         </div>
-        <script src="js/new_song.js"></script>
-        <script type="module">
-            import {feather} from "./js/scripts.min";
 
-            document.addEventListener('DOMContentLoaded', () => {
-                const newSongButton = document.getElementById('newSong');
-                if (newSongButton) {
-                    newSongButton.addEventListener('click', fetchNewSong);
-                }
-            });
-
-            // Make sure to call Feather's replace function to render icons
-            feather.replace();
-        </script>
+        <! -- JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/song-handler.js"></script>
         <script src="js/scripts.min.js"></script>
-        <script src="js/custom.js"></script>
         <script src="js/inline.js"></script>
 
     </body>
