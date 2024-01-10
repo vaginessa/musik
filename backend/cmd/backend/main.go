@@ -22,8 +22,9 @@ var startup time.Time
 
 func main() {
 	startup = time.Now()
-	rand.Seed(time.Now().UTC().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 
+	// init config service
 	configService := config.New{}
 	configService.Load()
 	cfg := configService.Get()
@@ -35,7 +36,7 @@ func main() {
 	errorMonitorService := sentry.NewService(&cfg)
 
 	// init music service
-	musicService := soundcloud.NewService(logService)
+	musicService := soundcloud.NewService(cfg, logService)
 
 	// init server and inject dependencies
 	server := api.NewServer(
@@ -53,7 +54,7 @@ func main() {
 	go func() {
 		// listen and serve
 		if err := server.Start(); err != nil && !errors.Is(err, http.ErrServerClosed) {
-			logService.Msg("shutting down server")
+			logService.Msg(err.Error())
 			errorMonitorService.Report(err)
 		}
 	}()

@@ -7,5 +7,5 @@ type Service interface {
 	GetArtworkURL(ctx context.Context, url string) (string, error)
 	GetSongTitle(ctx context.Context, url string) (string, error)
 	GetStreamURL(ctx context.Context, url string) (string, error)
-	GetRandomSongURL(ctx context.Context) (string, error)
+	GetRandomSong(ctx context.Context) (string, string, string, string, error)
 }

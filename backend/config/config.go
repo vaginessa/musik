@@ -49,15 +49,11 @@ func getSentryConfig() SentryConfig {
 	env := getGeneralConfig().AppEnv
 
 	config := SentryConfig{
-		DSN: "https://9a47c172155cbcfc50fb6aa4deea00a5@o4506205650681856.ingest.sentry.io/4506205651337216",
-	}
-
-	if env == STAGING {
-		config.DSN = "https://9a47c172155cbcfc50fb6aa4deea00a5@o4506205650681856.ingest.sentry.io/4506205651337216"
+		DSN: "https://c3f03af62f043fb1e70a8ea8c951dd2d@o4506542909358080.ingest.sentry.io/4506542910865408",
 	}
 
 	if env == PROD {
-		config.DSN = "https://9a47c172155cbcfc50fb6aa4deea00a5@o4506205650681856.ingest.sentry.io/4506205651337216"
+		config.DSN = "https://e60551da90863c28355cad718c84902a@o4506542909358080.ingest.sentry.io/4506542917484544"
 	}
 
 	return config
