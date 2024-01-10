@@ -16,21 +16,27 @@ async function getRandomSongDetails(req, res) {
     try {
         // Fetch random song URL
         const songResponse = await axios.get('http://localhost:8080/api/v1/music/random');
-        const songUrl = songResponse.data;
+        // const songUrl = songResponse.data.artworkUrl
+        const songData = songResponse.data;
+        // Extract each value
+        const streamUrl = songData.stream_url;
+       const artworkUrl = songData.artwork_url;
+        const songTitle = songData.song_title;
+        const trackUrl = songData.track_url;
 
 
         // Fetch artwork and stream URLs for the song
-        const artworkResponse = await axios.get(`http://localhost:8080/api/v1/music/artwork?url=${songUrl}`);
-        const streamResponse = await axios.get(`http://localhost:8080/api/v1/music/stream?url=${songUrl}`);
+        const artworkResponse = await axios.get(`http://localhost:8080/api/v1/music/artwork?url=${trackUrl}`);
+        // const streamResponse = await axios.get(`http://localhost:8080/api/v1/music/stream?url=${songUrl}`);
 
-        console.log("Song URL:", songUrl);
-        console.log("Artwork URL:", artworkResponse.data);
-        console.log("Stream URL:", streamResponse.data);
+        console.log("Track URL:", trackUrl);
+        console.log("Artwork URL:", artworkUrl);
+        console.log("Stream URL:", streamUrl);
 
         res.json({
-            songUrl: songUrl,
+            songUrl: trackUrl,
             artworkUrl: artworkResponse.data,
-            streamUrl: streamResponse.data
+            streamUrl: streamUrl,
         });
     } catch (error) {
         console.error("Error in getRandomSongDetails:", error);
